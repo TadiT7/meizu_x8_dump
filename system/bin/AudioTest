@@ -1,0 +1,200 @@
+#!/system/bin/sh
+#########################################################################
+#   AudioTest
+#   adb push AudioTest /system/bin
+#   chmod 755 /system/bin/AudioTest
+#########################################################################
+
+#HQ:
+
+LOOPBACK()
+{
+    if [ "$1" == "-start" ]; then #set start
+
+        echo "start"
+#Huaqin add for M1852-280 by chenqiang at 2018/5/25 start*/
+       if [ "$2" == "bm2h" ]; then #set built-in mic to headset path
+       echo "start built-in mic to headset"
+        #built-in mic
+        tinymix 'DEC1 MUX' 'ADC1'
+        tinymix 'ADC1_INP1 Switch' '1'
+        tinymix 'IIR2 INP1 MUX' 'DEC1'
+        #headphone
+        tinymix 'INT0_MI2S_RX Channels' 'Two'
+        tinymix 'RX1 MIX1 INP1' 'IIR2'
+        tinymix 'RX2 MIX1 INP1' 'IIR2'
+        tinymix 'RDAC2 MUX' 'RX2'
+        tinymix 'HPHL' 'Switch'
+        tinymix 'HPHR' 'Switch'
+        tinymix 'Loopback MCLK' 'ENABLE'
+
+       elif [ "$2" == "hm2e" ]; then #set headset mic to earprice
+       echo "start headset mic to earprice"
+        #headset mic
+        tinymix 'DEC1 MUX' 'ADC2'
+        tinymix 'ADC2 MUX' 'INP2'
+        tinymix 'IIR2 INP1 MUX' 'DEC1'
+        #earprice
+        tinymix 'INT0_MI2S_RX Channels' 'Two'
+        tinymix 'RX1 MIX1 INP1' 'IIR2'
+        tinymix 'RDAC2 MUX' 'RX1'
+        tinymix 'EAR_S' 'Switch'
+	tinymix 'Loopback MCLK' 'ENABLE'
+
+       #Huaqin add by chenqiang for M1852-823 at 2018.8.15 start
+       elif [ "$2" == "hm2lh" ]; then #set headset mic to left headphone
+       echo "start headset mic to left headphone"
+        #headset mic
+        tinymix 'DEC1 MUX' 'ADC2'
+        tinymix 'ADC2 MUX' 'INP2'
+        tinymix 'IIR2 INP1 MUX' 'DEC1'
+        #left headphone
+        tinymix 'INT0_MI2S_RX Channels' 'Two'
+        tinymix 'RX1 MIX1 INP1' 'IIR2'
+        tinymix 'RX2 MIX1 INP1' 'IIR2'
+        tinymix 'RDAC2 MUX' 'RX2'
+        tinymix 'HPHL' 'Switch'
+        tinymix 'Loopback MCLK' 'ENABLE'
+
+       elif [ "$2" == "hm2rh" ]; then #set headset mic to right headphone
+       echo "start headset mic to right headphone"
+        #headset mic
+        tinymix 'DEC1 MUX' 'ADC2'
+        tinymix 'ADC2 MUX' 'INP2'
+        tinymix 'IIR2 INP1 MUX' 'DEC1'
+        #right headphone
+        tinymix 'INT0_MI2S_RX Channels' 'Two'
+        tinymix 'RX1 MIX1 INP1' 'IIR2'
+        tinymix 'RX2 MIX1 INP1' 'IIR2'
+        tinymix 'RDAC2 MUX' 'RX2'
+        tinymix 'HPHR' 'Switch'
+        tinymix 'Loopback MCLK' 'ENABLE'
+
+       else
+          USAGE
+          echo "0"
+          exit 0
+
+       fi
+
+    elif [ "$1" == "-stop" ]; then #set stop
+        
+       echo "stop"
+
+       if [ "$2" == "bm2h" ]; then #set built-in mic to headset path
+       echo "stop built-in mic to headset"
+        #built-in mic
+        tinymix 'DEC1 MUX' 'ZERO'
+        tinymix 'ADC1_INP1 Switch' '0'
+        tinymix 'IIR2 INP1 MUX' 'ZERO'
+#Huaqin add for M1852-280 by chenqiang at 2018/5/25 end*/
+        #headphone
+        tinymix 'INT0_MI2S_RX Channels' 'One'
+        tinymix 'RX1 MIX1 INP1' 'ZERO'
+        tinymix 'RX2 MIX1 INP1' 'ZERO'
+        tinymix 'RDAC2 MUX' 'ZERO'
+        tinymix 'HPHL' 'ZERO'
+        tinymix 'HPHR' 'ZERO'
+
+       elif [ "$2" == "hm2e" ]; then #set headset mic to earprice
+       echo "stop headset mic to earprice"
+        #headset mic
+        tinymix 'DEC1 MUX' 'ZERO'
+        tinymix 'ADC2 MUX' 'ZERO'
+        tinymix 'IIR2 INP1 MUX' 'ZERO'
+        #earprice
+        tinymix 'INT0_MI2S_RX Channels' 'One'
+        tinymix 'RX1 MIX1 INP1' 'ZERO'
+        tinymix 'RDAC2 MUX' 'ZERO'
+        tinymix 'EAR_S' 'ZERO'
+
+       elif [ "$2" == "hm2lh" ]; then #set headset mic to left headphone
+       echo "stop headset mic to left headphone"
+        #headset mic
+        tinymix 'DEC1 MUX' 'ZERO'
+        tinymix 'ADC2 MUX' 'ZERO'
+        tinymix 'IIR2 INP1 MUX' 'ZERO'
+        #left headphone
+        tinymix 'INT0_MI2S_RX Channels' 'One'
+        tinymix 'RX1 MIX1 INP1' 'ZERO'
+        tinymix 'RX2 MIX1 INP1' 'ZERO'
+        tinymix 'RDAC2 MUX' 'ZERO'
+        tinymix 'HPHL' 'ZERO'
+
+       elif [ "$2" == "hm2rh" ]; then #set headset mic to right headphone
+       echo "stop headset mic to right headphone"
+        #headset mic
+        tinymix 'DEC1 MUX' 'ZERO'
+        tinymix 'ADC2 MUX' 'ZERO'
+        tinymix 'IIR2 INP1 MUX' 'ZERO'
+        #right headphone
+        tinymix 'INT0_MI2S_RX Channels' 'One'
+        tinymix 'RX1 MIX1 INP1' 'ZERO'
+        tinymix 'RX2 MIX1 INP1' 'ZERO'
+        tinymix 'RDAC2 MUX' 'ZERO'
+        tinymix 'HPHR' 'ZERO'
+       #Huaqin add by chenqiang for M1852-823 at 2018.8.15 end
+
+       else
+          USAGE
+          echo "0"
+          exit 0
+
+       fi
+
+    elif [ "$1" == "-speaker" ]; then #set speaker
+          echo "test speaker"
+       if [ "$2" != "" ]; then #file path is not null,start to play with speaker
+       am start -n com.android.huaqin.AudioTest/com.android.huaqin.AudioTest.AudioTestActivity -d "$2"
+       echo "play $2 with speaker"
+
+       else
+          USAGE
+          echo "0"
+          exit 0
+
+       fi
+ 
+     else
+        USAGE
+        echo "0"
+        exit 0
+
+   fi
+
+}
+
+#Usage
+USAGE()
+{
+    echo "--------------------------AudioRoutingTest----------------------------"
+    echo -e "\r"
+    echo "It's for audio loopback test."
+    echo -e "\r"
+    echo "---- COMMAND INFO ----"
+    echo " "
+    echo "--built-in mic to headphone--"
+    echo "COMMAND : "
+    echo " "
+    echo -e "\033[31m open path: adb shell AudioTest -start bm2h \033[0m"
+    echo -e "\033[31m close path: adb shell AudioTest -stop bm2h \033[0m"
+    echo " "
+    echo "--headset mic to earprice--"
+    echo "COMMAND :"
+    echo " "
+    echo -e "\033[31m open path: adb shell AudioTest -start hm2e \033[0m"
+    echo -e "\033[31m close path: adb shell AudioTest -start hm2e \033[0m"
+    echo " "
+    echo "---- speaker test ----"
+    echo -e "\033[33m Note that the file path of the playback requires you to specify. \033[0m"
+    echo "COMMAND : "
+    echo " "
+    echo -e "\033[31m adb shell AudioTest -speaker /xx/xx.wav \033[0m"
+    echo -e "\r"
+    echo "--------------------------AudioRoutingTest----------------------------"
+    echo -e "\r"
+}
+
+LOOPBACK $1 $2
+
+

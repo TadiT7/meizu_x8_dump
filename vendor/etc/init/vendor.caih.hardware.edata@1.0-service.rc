@@ -1,0 +1,8 @@
+service edatasrv /vendor/bin/hw/vendor.caih.hardware.edata@1.0-service
+    class late_start
+    user system
+    disabled
+
+on property:sys.start_edatasrv=1
+    start edatasrv
+

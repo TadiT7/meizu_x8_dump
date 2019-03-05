@@ -1,0 +1,17 @@
+on boot
+    mkdir /dev/cpuset/affinity_bigcores 0775 system system
+    chmod 666 /dev/cpuset/affinity_bigcores/cpus
+    chmod 666 /dev/cpuset/affinity_bigcores/tasks
+    chmod 666 /dev/cpuset/affinity_bigcores/mems
+    mkdir /dev/cpuset/affinity_smallcores 0775 system system
+    chmod 666 /dev/cpuset/affinity_smallcores/cpus
+    chmod 666 /dev/cpuset/affinity_smallcores/tasks
+    chmod 666 /dev/cpuset/affinity_smallcores/mems
+    mkdir /dev/cpuset/affinity_middlecores 0775 system system
+    chmod 666 /dev/cpuset/affinity_middlecores/cpus
+    chmod 666 /dev/cpuset/affinity_middlecores/tasks
+    chmod 666 /dev/cpuset/affinity_middlecores/mems
+    mkdir /dev/cpuset/affinity_allcores 0775 system system
+    chmod 666 /dev/cpuset/affinity_allcores/cpus
+    chmod 666 /dev/cpuset/affinity_allcores/tasks
+    chmod 666 /dev/cpuset/affinity_allcores/mems

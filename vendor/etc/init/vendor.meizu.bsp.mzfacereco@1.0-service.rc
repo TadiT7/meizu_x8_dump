@@ -1,0 +1,9 @@
+service mzfacerecod /vendor/bin/hw/vendor.meizu.bsp.mzfacereco@1.0-service
+    class late_start
+    user system
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1
+    start mzfacerecod
+

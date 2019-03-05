@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?><sunwave:Config xmlns:sunwave="http://www.sunwavecorp.com/some-location" Environment="TEE" platform="项目信息: huaqin-for-test">
+  <feature>
+    <key_emulation cname="按键功能开关" default="false" desc="默认：false" format="boolean" useable="true">false</key_emulation>
+    <navigation cname="导航功能开关" default="false" desc="默认：false" format="boolean" useable="true">false</navigation>
+    <health_checking cname="ESD线程总开关" default="true" desc="默认：true" format="boolean" useable="true">true</health_checking>
+    <health_trig cname="ESD触发方式开关" default="true" desc="默认：true" format="boolean" useable="true">true</health_trig>
+    <self_learning cname="模板自学习开关" default="true" desc="默认：true" format="boolean" useable="true">true</self_learning>
+    <unique_finger cname="重复手指录入判断开关" default="true" desc="默认：true" format="boolean" useable="true">true</unique_finger>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </feature>
+  
+  <algo>
+    <enrolling_num_max cname="单模板录入最大次数" default="15" desc="大于10。默认: 15" format="array" options="10次|11次|12次|13次|14次|15次|16次|17次|18次|19次|20次" useable="true" values="10|11|12|13|14|15|16|17|18|19|20">15</enrolling_num_max>
+    <enrolling_samples cname="单模板录入次数" default="0" desc="不得大于单模板录入最大次数。默认: 动态计算" format="array" options="动态计算|8次|9次|10次|11次|12次|13次|14次|15次" useable="true" values="0|8|9|10|11|12|13|14|15">0</enrolling_samples>
+    <max_fingers_per_user cname="每个用户拥有指纹数量" default="5" desc="单用户最大指纹模板数量。默认: 5个" format="array" options="3个|4个|5个|6个|7个" useable="true" values="3|4|5|6|7">5</max_fingers_per_user>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </algo>
+    
+  <device>
+    <vdd cname="电压选择" default="0" desc="93XX/95XX系列芯片使用。默认: 2.8V" format="array" options="2.8V|2.9V|3.0V|3.1V|3.2V|3.3V" useable="true" values="0|1|2|3|4|5">0</vdd>
+    
+    
+    
+    
+  </device>
+  
+  <sensor>
+    
+    
+    <sensitivity_8221 cname="8221灵敏度参数" default="0x18" desc="输入请带0x，16进制。取值范围[0x00,0x3f]默认：0x18" format="hexInteger" max="0x3f" min="0x00" useable="true">0x18</sensitivity_8221>
+    <sensitivity_8202 cname="8202灵敏度参数" default="0x18" desc="输入请带0x，16进制。取值范围[0x00,0x3f]默认：0x18" format="hexInteger" max="0x3f" min="0x00" useable="true">0x18</sensitivity_8202>
+    <sensitivity_8205 cname="8205灵敏度参数" default="0x18" desc="输入请带0x，16进制。取值范围[0x00,0x3f]默认：0x18" format="hexInteger" max="0x3f" min="0x00" useable="true">0x18</sensitivity_8205>
+    <sensitivity_8231 cname="8231灵敏度参数" default="0x06" desc="输入请带0x，16进制。取值范围[0x00,0x0f]默认：0x06" format="hexInteger" max="0x0f" min="0x00" useable="true">0x06</sensitivity_8231>
+    <sensitivity_8241 cname="8241灵敏度参数" default="0x09" desc="输入请带0x，16进制。取值范围[0x00,0x0f]默认：0x09" format="hexInteger" max="0x0f" min="0x00" useable="true">0x09</sensitivity_8241>
+    <sensitivity_8271 cname="8271灵敏度参数" default="0x0c" desc="输入请带0x，16进制。取值范围[0x05,0x20]默认：0x0c" format="hexInteger" max="0x20" min="0x05" useable="true">0x0c</sensitivity_8271>
+    <sensitivity_8273 cname="8273灵敏度参数" default="0x0c" desc="输入请带0x，16进制。取值范围[0x05,0x20]默认：0x0c" format="hexInteger" max="0x20" min="0x05" useable="true">0x0c</sensitivity_8273>
+    <sensitivity_8281 cname="8281灵敏度参数" default="0x0f" desc="输入请带0x，16进制。取值范围[0x05,0x20]默认：0x0f" format="hexInteger" max="0x20" min="0x05" useable="true">0x0f</sensitivity_8281>
+    
+  </sensor>
+  
+  <driver>
+    <spi_bus_num cname="SPI 总线号" default="0" desc="目前尚未使用。默认：0" format="integer" useable="true">0</spi_bus_num>
+    <spi_c_s_num cname="SPI 片选号" default="0" desc="目前尚未使用。默认：0" format="integer" useable="true">0</spi_c_s_num>
+    
+  </driver>
+  
+  <navigation>    
+    <mode cname="导航方向模式选择" default="3" desc="导航方向模式选择。默认：SF_NAV_MODE_AUTO" format="array" options="SF_NAV_MODE_ALL|SF_NAV_MODE_LMR|SF_NAV_MODE_UMD|SF_NAV_MODE_AUTO" useable="true" values="0|1|2|3">3</mode>
+    <direct cname="导航方向映射" default="UDLR" desc="导航方向映射。默认：UDLR" format="string" useable="true">UDLR</direct>
+    <longkey_en cname="导航长按开关" default="true" desc="默认：true" format="boolean" useable="true">true</longkey_en>
+    <frm_num_min cname="导航最小采集帧数" default="5" desc="导航最小采集帧数[3,10]。默认: 5" format="integer" max="10" min="3" useable="true">5</frm_num_min>
+    <frm_num_max cname="导航最大采集帧数" default="200" desc="导航最大采集帧数[5,200]。默认: 200" format="integer" max="200" min="5" useable="true">200</frm_num_max>
+    <thresh_x cname="导航x方向灵敏度" default="18" desc="导航x方向灵敏度[10,30]。默认: 18" format="integer" max="30" min="10" useable="true">18</thresh_x>
+    <thresh_y cname="导航y方向灵敏度" default="18" desc="导航y方向灵敏度[10,30]。默认: 18" format="integer" max="30" min="10" useable="true">18</thresh_y>
+    
+  </navigation>
+  
+  <diagnosis>
+    <img_invciper_data cname="导出原始图像" default="false" desc="需依赖 导出指纹图像。默认：false" format="boolean" useable="true">false</img_invciper_data>
+    <data_dumping cname="导出指纹图像" default="false" desc="默认：false" format="boolean" useable="true">false</data_dumping>
+    <log_level cname="调试信息等级" default="2" desc="LOG 打印等级。默认：LOG_LEVEL_INF" format="array" options="LOG_LEVEL_INF|LOG_LEVEL_ERR" useable="true" values="2|3">2</log_level>
+  </diagnosis>
+  
+  <solution>
+    <qsee_spi_id cname="QSEE SPI 设备号" default="16" desc="QSEE SPI 设备号。默认：QSEE_SPI_DEVICE_6" format="array" options="QSEE_SPI_DEVICE_1|QSEE_SPI_DEVICE_2|QSEE_SPI_DEVICE_3|QSEE_SPI_DEVICE_4|QSEE_SPI_DEVICE_5|QSEE_SPI_DEVICE_6|QSEE_SPI_DEVICE_7|QSEE_SPI_DEVICE_8|QSEE_SPI_DEVICE_9|QSEE_SPI_DEVICE_10|QSEE_SPI_DEVICE_11|QSEE_SPI_DEVICE_12" useable="true" values="1|2|3|4|5|6|7|8|9|10|11|12">16</qsee_spi_id>
+    
+    
+    
+  </solution>
+  
+  <customer>
+    
+    <msg_base cname="消息基准值" default="1000" desc="自定义消息基准值。默认: 1000" format="integer" max="2000" min="1000" useable="true">1000</msg_base>
+    
+    
+  </customer>
+  
+</sunwave:Config>

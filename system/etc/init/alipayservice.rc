@@ -1,0 +1,5 @@
+service alipayservice /system/bin/alipayservice
+  class core
+  user system
+  group system
+  writepid /dev/cpuset/system/tasks

@@ -1,0 +1,10 @@
+# Flyme@limin.Stability.add nativemonitor feature.@{
+#on boot
+#   mkdir /sdcard/Android/snapshot 0777 system syetem
+service nativemonitor /system/bin/nativemonitor
+    user root
+    group root
+    # Don't start nativemonitor until after the real /data is mounted.
+    class late_start 
+    socket nativemonitor stream 0660 system system
+# @}
